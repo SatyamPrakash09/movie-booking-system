@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import '../App.css'
 
 function MovieList({ setSelectedMovie }) {
 
@@ -17,21 +18,25 @@ function MovieList({ setSelectedMovie }) {
   return (
     <div>
 
-      <h2>Available Movies</h2>
+      <h2 className="text-2xl mt-2 mb-4 font-bold underline">Available Movies</h2>
 
-      <div className="movie-grid">
+      <div className="movie-grid grid grid-cols-5">
 
         {movies.map(movie => (
 
-          <div className="movie-card" key={movie.id}>
+          <div className="movie-card flex flex-col items-center text-center bg-[#f4f1de] m-2 rounded-2xl shadow-lg shadow-[#3d405b] mb-4 " key={movie.id}>
 
-            <img src={movie.image?.medium} />
+            <img className="rounded-2xl m-2 shadow-lg shadow-[#e07a5f]" src={movie.image?.medium} />
 
-            <h3>{movie.name}</h3>
+            <div className="m-2">
+              <h3 className="text-xl  font-bold">{movie.name}</h3>
 
-            <button onClick={()=>setSelectedMovie(movie)}>
-              Book Ticket
-            </button>
+              <button className="border shadow-xl bg-amber-50 px-2 py-1 rounded-lg" onClick={()=>setSelectedMovie(movie)}>
+                Book Ticket
+              </button>
+
+            </div>
+
 
           </div>
 
