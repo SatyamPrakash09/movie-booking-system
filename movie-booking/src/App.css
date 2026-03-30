@@ -55,6 +55,15 @@ color:white;
     max-width: 400px;
     margin: 10px auto; 
 }
+/* Works for most browsers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE, Edge */
+  scrollbar-width: none;     /* Firefox */
+}
 /* .seats button.booked{
     background: red !important;
     cursor: not-allowed;

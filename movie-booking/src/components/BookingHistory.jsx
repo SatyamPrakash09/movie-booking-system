@@ -14,9 +14,9 @@ function BookingHistory(){
 
   return(
 
-    <div className="h-full">
+    <div className="h-full ">
 
-      <h2 className="text-lg font-bold  underline">Booking History</h2>
+      <h2 className="text-lg font-bold  underline text-center mt-4">Booking History</h2>
 
         <div className="grid grid-cols-5 justify-center items-center">
 

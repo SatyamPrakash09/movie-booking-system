@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import '../App.css'
-
 function MovieList({ setSelectedMovie }) {
 
   const [movies, setMovies] = useState([]);
@@ -38,9 +37,8 @@ function MovieList({ setSelectedMovie }) {
   }
 
   return (
-    <div>
+    <div className="mt-5">
 
-      <h2 className="text-2xl mt-2 mb-4 font-bold underline">Available Movies</h2>
       {/* Search Bar */}
       <div className="flex justify-center mb-4">
         <div className="flex w-full max-w-md gap-2">
@@ -62,7 +60,7 @@ function MovieList({ setSelectedMovie }) {
           <button
           onClick={handleSearch}
           className="px-4 py-2 bg-[#e07a5f] text-white
-          rounded-xl font-semibold shadow-md hover:bg-[#c9604a] active:scale-95 cursor-pointer transition-all duration-200
+          rounded-xl font-semibold shadow-md hover:bg-[#c8604c] active:scale-95 cursor-pointer transition-all duration-200
           ">
             Search
           </button>
@@ -70,13 +68,13 @@ function MovieList({ setSelectedMovie }) {
       </div>
 
       {isloading &&
-        <p className="font-semibold text-[#3d405b] mb-2">
+        <p className="font-semibold text-[#59595e] mb-2 text-center">
           Searching.....
         </p>
       }
 
       {!isloading && movies.length === 0 && searchQuery && (
-        <p className="text-red-500 font-semibold mb-2">
+        <p className="text-red-500 fixed text-3xl top-1/2 left-2/5 font-semibold mb-2 text-center">
           Result Not Found
         </p>
       )}
