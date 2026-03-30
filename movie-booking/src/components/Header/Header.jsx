@@ -3,12 +3,12 @@ import { Link, NavLink } from 'react-router';
 export default function Header() {
     return (
         <header className="shadow sticky z-50 top-0">
-            <nav className="bg-white border-gray-200 px-4 lg:px-6 py-2.5">
+            <nav className="bg-[#FFF2D0] border-gray-200 px-4 lg:px-6 py-2.5">
                 <div className="flex flex-wrap justify-between items-center mx-auto max-w-7xl">
                     <Link to="/" className="flex items-center">
                         <img
                             src="https://img.freepik.com/premium-vector/movie-ticket-logo-template-design_20029-891.jpg?semt=ais_incoming&w=740&q=80"
-                            className="mr-3 h-12 scale-120"
+                            className="mr-3 h-12 scale-120 rounded-xl"
                             alt="Logo"
                         />
                     </Link>

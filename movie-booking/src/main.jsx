@@ -7,10 +7,12 @@ import "./App.css";
 import Layout from "./Layout";
 import BookingHistory from "./components/BookingHistory";
 import MovieList from "./components/MovieList";
+import SeatBooking from "./components/SeatBooking";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="" element={<Layout/>}>
       <Route index element={<MovieList/>}/>
+      <Route path="booking" element={<SeatBooking/>}/>
       <Route path="bookinghistory" element={<BookingHistory/>}/>
     </Route>
   )

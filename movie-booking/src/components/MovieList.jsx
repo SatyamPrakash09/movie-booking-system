@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import '../App.css'
-function MovieList({ setSelectedMovie }) {
+function MovieList() {
+  const navigate = useNavigate();
 
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("")
@@ -91,7 +93,7 @@ function MovieList({ setSelectedMovie }) {
 
 
               <button className="border shadow-xl bg-amber-50 px-2 py-1 rounded-lg m-1 hover:bg-amber-500/40 cursor-pointer" 
-              onClick={()=>setSelectedMovie(movie)}
+              onClick={() => navigate('/booking', { state: { movie } })}
               >
                 Book Ticket
               </button>
