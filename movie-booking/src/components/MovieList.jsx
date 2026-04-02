@@ -11,24 +11,24 @@ function MovieList() {
   const [searchQuery, setSearchQuery] = useState("")
   const [isloading, setIsLoading] = useState(false)
   const [page, setPage] = useState(1)
-  const [start, setStart] = useState(0)
   const handlePageChange = (e, value)=>{
     setPage(value)
-    setStart(page-1)
   }
 
   useEffect(() => {
+    const start = (page - 1) * 20;
     axios.get("https://api.tvmaze.com/shows")
       .then(res => {
-        setMovies(res.data.slice(start,start+20));
+        setMovies(res.data.slice(start, start + 20));
       });
 
-  }, [start, setStart]);
+  }, [page]);
 
   const handleSearch = () =>{
     if(searchQuery.trim() === ""){
+      const start = (page - 1) * 20;
       axios.get("https://api.tvmaze.com/shows")
-        .then(res=> setMovies(res.data.slice(start,start+20)))
+        .then(res=> setMovies(res.data.slice(start, start + 20)))
       return 
     }
     setIsLoading(true);
