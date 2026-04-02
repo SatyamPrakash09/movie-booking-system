@@ -41,6 +41,7 @@ function SeatBooking() {
     }
 
     const booking = {
+      imageUrl:movie.image,
       movie: movie.name,
       seats: selectedSeats,
       date: new Date().toLocaleString()

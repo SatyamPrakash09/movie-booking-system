@@ -39,10 +39,10 @@ function MovieList() {
   }
 
   return (
-    <div className="mt-5">
+    <div className="pt-5 bg-[#f2cc8f]">
 
       {/* Search Bar */}
-      <div className="flex justify-center mb-4">
+      <div className="flex justify-center mb-4 ">
         <div className="flex w-full max-w-md gap-2">
           <div className="relative flex-1">
               <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-lg">
