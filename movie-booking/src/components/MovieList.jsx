@@ -4,6 +4,7 @@ import axios from "axios";
 
 import { Pagination, Stack } from "@mui/material";
 import '../App.css'
+import WatchHistory from "./WatchHistory/WatchHistory";
 function MovieList() {
   const navigate = useNavigate();
 
@@ -49,6 +50,23 @@ function MovieList() {
 
   const handleKeyDown = (e) =>{
     if(e.key === "Enter") handleSearch()
+  }
+
+  const handleWatch = (movie)=>{
+    const stored = JSON.parse(localStorage.getItem("watchHistory")) || [];
+    const isAlreadyPresent = stored.some(
+      (item) => item.movie === movie.name
+    );
+    
+    if(!isAlreadyPresent){
+      const currentMovieDetail = {
+        imageUrl:movie.image,
+        movie: movie.name,
+        date: new Date().toLocaleString()
+      };
+      localStorage.setItem("watchHistory", JSON.stringify([ currentMovieDetail,...stored,].slice(0,20)));
+    }
+
   }
 
   return (
@@ -111,7 +129,7 @@ function MovieList() {
                 Book Ticket
               </button>
               <button className="border shadow-xl bg-amber-50 px-2 py-1 rounded-lg m-1 hover:bg-amber-500/40 cursor-pointer" 
-              
+              onClick={()=>handleWatch(movie)}
               >
                 <a href={`${movie?.url}`}>Watch</a>
               </button>
