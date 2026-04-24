@@ -10,12 +10,14 @@ import MovieList from "./components/MovieList";
 import SeatBooking from "./components/SeatBooking";
 import './bones/registry.js'
 
+import WatchHistory from "./components/WatchHistory/WatchHistory";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="" element={<Layout/>}>
       <Route index path="/" element={<MovieList/>}/>
       <Route path="booking" element={<SeatBooking/>}/>
       <Route path="bookinghistory" element={<BookingHistory/>}/>
+      <Route path="watchhistory" element={<WatchHistory/>}/>
     </Route>
   )
 )
