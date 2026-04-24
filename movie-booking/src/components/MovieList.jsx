@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Skeleton } from 'boneyard-js/react'
 
-
 import { Pagination, Stack } from "@mui/material";
 import '../App.css'
 function MovieList() {
@@ -19,16 +18,15 @@ function MovieList() {
   }
 
   useEffect(() => {
+    setIsLoading(true);
     const start = (page - 1) * 20;
-    setIsLoading(true)
     axios.get(`https://api.tvmaze.com/shows?page=${page}`)
       .then(res => {
         setTotalPage(Math.ceil(res.data.length / 20));
         setMovies(res.data.slice(start, start + 20));
-        setIsLoading(false)
+        setIsLoading(false);
       })
-      .catch(()=>setIsLoading(false))
-
+      .catch(() => setIsLoading(false));
   }, [page]);
 
   const handleSearch = () =>{
@@ -98,7 +96,15 @@ function MovieList() {
           Result Not Found
         </p>
       )}
-      <Skeleton name="movies-card" wait={3000} animate="shimmer" darkShimmerColor={"#2c2c2c"} speed="2s" loading={isloading} transition={true}>
+      <Skeleton 
+      name="movies-card" 
+      animate="shimmer"
+      color="#FFF8DC"
+      darkColor="#2c2c2c" 
+      loading={isloading} 
+      transition={true}
+      stagger={true}
+      >
         <div className="movie-grid grid grid-cols-5">
           {movies.map(movie => (
             <div className="movie-card flex flex-col items-center text-center bg-[#f4f1de] m-2 rounded-2xl shadow-lg shadow-[#3d405b] mb-4 " key={movie.id}>
