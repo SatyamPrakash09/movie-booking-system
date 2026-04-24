@@ -21,16 +21,13 @@ function MovieList() {
   useEffect(() => {
     const start = (page - 1) * 20;
     setIsLoading(true)
-    setTimeout(() => {
-      
-      axios.get(`https://api.tvmaze.com/shows?page=${page}`)
-        .then(res => {
-          setTotalPage(Math.ceil(res.data.length / 20));
-          setMovies(res.data.slice(start, start + 20));
-          setIsLoading(false)
-        })
-        .catch(()=>setIsLoading(false))
-    }, 0);
+    axios.get(`https://api.tvmaze.com/shows?page=${page}`)
+      .then(res => {
+        setTotalPage(Math.ceil(res.data.length / 20));
+        setMovies(res.data.slice(start, start + 20));
+        setIsLoading(false)
+      })
+      .catch(()=>setIsLoading(false))
 
   }, [page]);
 
@@ -101,7 +98,7 @@ function MovieList() {
           Result Not Found
         </p>
       )}
-      <Skeleton name="movies-card" wait={2000} animate="pulse" speed="2s" loading={isloading} transition={true}>
+      <Skeleton name="movies-card" wait={3000} animate="shimmer" darkShimmerColor={"#2c2c2c"} speed="2s" loading={isloading} transition={true}>
         <div className="movie-grid grid grid-cols-5">
           {movies.map(movie => (
             <div className="movie-card flex flex-col items-center text-center bg-[#f4f1de] m-2 rounded-2xl shadow-lg shadow-[#3d405b] mb-4 " key={movie.id}>
