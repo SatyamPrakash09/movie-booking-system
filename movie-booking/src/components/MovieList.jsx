@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Skeleton } from 'boneyard-js/react'
+
 
 import { Pagination, Stack } from "@mui/material";
 import '../App.css'
@@ -18,11 +20,17 @@ function MovieList() {
 
   useEffect(() => {
     const start = (page - 1) * 20;
-    axios.get("https://api.tvmaze.com/shows")
-      .then(res => {
-        setTotalPage(Math.ceil(res.data.length / 20));
-        setMovies(res.data.slice(start, start + 20));
-      });
+    setIsLoading(true)
+    setTimeout(() => {
+      
+      axios.get(`https://api.tvmaze.com/shows?page=${page}`)
+        .then(res => {
+          setTotalPage(Math.ceil(res.data.length / 20));
+          setMovies(res.data.slice(start, start + 20));
+          setIsLoading(false)
+        })
+        .catch(()=>setIsLoading(false))
+    }, 0);
 
   }, [page]);
 
@@ -93,36 +101,27 @@ function MovieList() {
           Result Not Found
         </p>
       )}
-      <div className="movie-grid grid grid-cols-5">
-
-        {movies.map(movie => (
-
-          <div className="movie-card flex flex-col items-center text-center bg-[#f4f1de] m-2 rounded-2xl shadow-lg shadow-[#3d405b] mb-4 " key={movie.id}>
-
-            <img className="rounded-2xl m-2 shadow-lg shadow-[#e07a5f]" src={movie.image?.medium} />
-
-            <div className="m-2">
-              <h3 className="text-xl  font-bold">{movie.name}</h3>
-
-
-              <button className="border shadow-xl bg-amber-50 px-2 py-1 rounded-lg m-1 hover:bg-amber-500/40 cursor-pointer" 
-              onClick={() => navigate('/booking', { state: { movie } })}
-              >
-                Book Ticket
-              </button>
-              <button className="border shadow-xl bg-amber-50 px-2 py-1 rounded-lg m-1 hover:bg-amber-500/40 cursor-pointer" 
-              
-              >
-                <a href={`${movie?.url}`}>Watch</a>
-              </button>
+      <Skeleton name="movies-card" wait={2000} animate="pulse" speed="2s" loading={isloading} transition={true}>
+        <div className="movie-grid grid grid-cols-5">
+          {movies.map(movie => (
+            <div className="movie-card flex flex-col items-center text-center bg-[#f4f1de] m-2 rounded-2xl shadow-lg shadow-[#3d405b] mb-4 " key={movie.id}>
+              <img className="rounded-2xl m-2 shadow-lg shadow-[#e07a5f]" src={movie.image?.medium} />
+              <div className="m-2">
+                <h3 className="text-xl  font-bold">{movie.name}</h3>
+                <button className="border shadow-xl bg-amber-50 px-2 py-1 rounded-lg m-1 hover:bg-amber-500/40 cursor-pointer" 
+                onClick={() => navigate('/booking', { state: { movie } })}
+                >
+                  Book Ticket
+                </button>
+                <button className="border shadow-xl bg-amber-50 px-2 py-1 rounded-lg m-1 hover:bg-amber-500/40 cursor-pointer" 
+                >
+                  <a href={`${movie?.url}`}>Watch</a>
+                </button>
+              </div>
             </div>
-
-
-          </div>
-
-        ))}
-
-      </div>
+          ))}
+        </div>
+      </Skeleton>
       <div className="flex flex-1 justify-center items-center py-3 bg-white/30">
         <Stack spacing={2}>
           <Pagination count={totalPage} onChange={handlePageChange} shape="rounded" page={page} color="primary"/>

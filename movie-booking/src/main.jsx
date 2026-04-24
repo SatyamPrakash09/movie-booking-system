@@ -8,10 +8,12 @@ import Layout from "./Layout";
 import BookingHistory from "./components/BookingHistory";
 import MovieList from "./components/MovieList";
 import SeatBooking from "./components/SeatBooking";
+import './bones/registry.js'
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="" element={<Layout/>}>
-      <Route index element={<MovieList/>}/>
+      <Route index path="/" element={<MovieList/>}/>
       <Route path="booking" element={<SeatBooking/>}/>
       <Route path="bookinghistory" element={<BookingHistory/>}/>
     </Route>
