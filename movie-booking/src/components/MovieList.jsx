@@ -34,7 +34,7 @@ function MovieList() {
   const handleSearch = () =>{
     if(searchQuery.trim() === ""){
       const start = (page - 1) * 20;
-      axios.get("https://api.tvmaze.com/shows")
+      axios.get(`https://api.tvmaze.com/shows?${page}`)
         .then(res => {
           setTotalPage(Math.ceil(res.data.length / 20));
           setMovies(res.data.slice(start, start + 20));
