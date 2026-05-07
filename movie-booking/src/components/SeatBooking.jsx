@@ -58,11 +58,11 @@ function SeatBooking() {
 
   return (
 
-    <div className="flex flex-col my-2 text-center">
+    <div className="flex flex-col my-2 text-center min-h-screen bg-[var(--bg-primary)] transition-colors duration-300 py-6">
 
-      <h2 className="text-2xl font-bold text-center">{movie.name}</h2>
+      <h2 className="text-2xl font-bold text-center text-[var(--text-heading)]">{movie.name}</h2>
 
-      <div className="grid grid-cols-5 gap-2 justify-center w-[20%] m-auto">
+      <div className="grid grid-cols-5 gap-2 justify-center w-[90%] sm:w-[60%] md:w-[40%] lg:w-[20%] m-auto">
 
         {seats.map(seat => {
           const isBooked = bookedSeat.includes(seat)
@@ -73,13 +73,13 @@ function SeatBooking() {
             key={seat}
             onClick={() => toggleSeat(seat)}
             disabled={isBooked}
-            className={`border border-black rounded p-2 text-center transition
+            className={`border rounded p-2 text-center transition-all duration-200 cursor-pointer font-medium
               ${
                 isBooked
-                  ? "bg-red-400 cursor-not-allowed"
+                  ? "bg-red-400 dark:bg-red-600 cursor-not-allowed text-white border-red-500"
                   : isSelected
-                  ? "bg-green-500 text-white"
-                  : "bg-white hover:bg-blue-100"
+                  ? "bg-green-500 dark:bg-green-600 text-white border-green-600"
+                  : "bg-[var(--bg-card)] text-[var(--text-primary)] border-[var(--border-color)] hover:bg-blue-100 dark:hover:bg-blue-900/40"
               }
             `}
           >
@@ -94,8 +94,8 @@ function SeatBooking() {
 
       <div className="flex flex-col gap-2 justify-center items-center">
 
-        <button className="border m-auto py-1 px-2 rounded-lg bg-[#e07a5f] text-lg font-bold" onClick={confirmBooking}>Confirm Booking</button>
-        <button className="border m-auto py-1 px-2 rounded-lg bg-[#e07a5f] text-lg font-bold" onClick={() => navigate(-1)}>Back</button>
+        <button className="border border-[var(--border-color)] m-auto py-1 px-4 rounded-lg bg-[var(--accent)] text-white text-lg font-bold hover:bg-[var(--accent-hover)] cursor-pointer transition-colors duration-200" onClick={confirmBooking}>Confirm Booking</button>
+        <button className="border border-[var(--border-color)] m-auto py-1 px-4 rounded-lg bg-[var(--accent)] text-white text-lg font-bold hover:bg-[var(--accent-hover)] cursor-pointer transition-colors duration-200" onClick={() => navigate(-1)}>Back</button>
       </div>
 
     </div>
