@@ -1,65 +1,9 @@
-@import 'tailwindcss';
-/* body{
-font-family: Arial;
-background:#f4f4f4;
-}
 
-.container{
-text-align:center;
-padding:20px;
-}
-
-.movie-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:20px;
-}
-
-.movie-card{
-background:white;
-padding:10px;
-border-radius:10px;
-}
-
-.movie-card img{
-width:100%;
-border-radius:10px;
-}
-*/
-
-/* .seats{
-display:grid;
-grid-template-columns:repeat(5,50px);
-gap:10px;
-justify-content:center;
-}
-
-.seats button{
-padding:10px;
-border:none;
-background:#ddd;
-cursor:pointer;
-border-radius: 10px;
-}
-
-.seats .selected{
-background:green !important; 
-color:white;
-}
-*/
-
-
-/* Works for most browsers */
 .no-scrollbar::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  display: none; 
 }
 
 .no-scrollbar {
-  -ms-overflow-style: none;  /* IE, Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none; 
+  scrollbar-width: none;     
 }
-/* .seats button.booked{
-    background: red !important;
-    cursor: not-allowed;
-    opacity: 0.6;
-}  */
